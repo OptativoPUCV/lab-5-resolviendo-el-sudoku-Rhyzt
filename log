@@ -146,3 +146,9 @@ Sat, May 17, 2025 12:41:09 AM:
  tests:  7|1
 total_score: 55/70
 eafc3ed
+Sat, May 17, 2025 12:50:31 AM: 
+ sudoku.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
+ tests:  8|1
+total_score: 60/70
+180403d

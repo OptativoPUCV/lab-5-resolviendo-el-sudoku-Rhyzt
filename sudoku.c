@@ -90,7 +90,7 @@ int is_valid(Node* n){
 }
 
 List* get_adj_nodes(Node* n){
-    List* list=createList();
+    List *list = createList();
     int flag = 1;
     for (int i = 0 ; i < 9 ; i++) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
@@ -108,7 +108,6 @@ List* get_adj_nodes(Node* n){
         }
         if (!flag) break;
     }
-
     return list;
 }
 
@@ -124,16 +123,13 @@ Node* DFS(Node* initial, int* cont){
     Stack *pila = createStack();
     push(pila, initial);
     while (top(pila) != NULL) {
-        List *lista = get_adj_nodes(top(pila));
-        if (lista == NULL) {
-            return top(pila);
-        }
+        Node *aux = top(pila);
         pop(pila);
 
-        Node *aux = first(lista);
-        push(pila, aux);
+        if (is_final(aux)) return aux;
 
-        while (next(lista) != NULL) {
+        List *lista = get_adj_nodes(aux);
+        for (aux = first(lista) ; aux != NULL ; aux = next(lista)) {
             push(pila, aux);
         }
         free(lista);
