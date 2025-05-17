@@ -116,3 +116,15 @@ sudoku.c:116:37: error: comparison between pointer and integer [-Werror]
                                      ^~
 cc1.exe: all warnings being treated as errors
 498b137
+Fri, May 16, 2025 11:45:44 PM: 
+Compilation failed
+In file included from test.c:5:0:
+sudoku.c: In function 'is_final':
+sudoku.c:116:9: error: implicit declaration of function 'firstList' [-Werror=implicit-function-declaration]
+     if (firstList(get_adj_nodes(n)) == NULL) return 1;
+         ^~~~~~~~~
+sudoku.c:116:37: error: comparison between pointer and integer [-Werror]
+     if (firstList(get_adj_nodes(n)) == NULL) return 1;
+                                     ^~
+cc1.exe: all warnings being treated as errors
+ecc65a4
