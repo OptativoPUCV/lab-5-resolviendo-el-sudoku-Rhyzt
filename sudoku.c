@@ -113,7 +113,7 @@ List* get_adj_nodes(Node* n){
 
 
 int is_final(Node* n){
-    if (firstList(get_adj_nodes(n)) != NULL) return 1;
+    if (firstList(get_adj_nodes(n)) == NULL) return 1;
     return 0;
 }
 
