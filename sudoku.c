@@ -44,20 +44,20 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int enFila(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 existe
+int enColumna(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 existe
     for (int n = 0 ; n < 9 ; n++) {
         if (sudo[x][n] == cand && n != posy)
-            return 0;
+            return 1;
     }
-    return 1;
+    return 0;
 }
 
-int enColumna(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
+int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
     for (int n = 0 ; n < 9 ; n++) {
         if (sudo[n][y] == cand && n != posx)
-            return 0;
+            return 1;
     }
-    return 1;
+    return 0;
 }
 
 int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 existe
