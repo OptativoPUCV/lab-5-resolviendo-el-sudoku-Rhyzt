@@ -61,7 +61,7 @@ int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
 }
 
 int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 existe
-    int k = 3 * (y/3) + (x/3), p;
+    int k = 3 * (x/3) + (y/3), p;
     for(p=0;p<9;p++) {
         int i=3*(k/3) + (p/3) ;
         int j=3*(k%3) + (p%3) ;
@@ -76,9 +76,9 @@ int is_valid(Node* n){
     for (int i = 0 ; i < 9 ; i++) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
             if (n -> sudo[i][k] != 0) {
-                if (enColumna(n -> sudo, k, n -> sudo[i][k], i))
+                if (enColumna(n -> sudo, i, n -> sudo[i][k], k))
                     return 0;
-                if (enFila(n -> sudo, i, n -> sudo[i][k], k))
+                if (enFila(n -> sudo, k, n -> sudo[i][k], i))
                     return 0;
                 if (enSubMatriz(n -> sudo, i, k, n -> sudo[i][k]))
                     return 0;
