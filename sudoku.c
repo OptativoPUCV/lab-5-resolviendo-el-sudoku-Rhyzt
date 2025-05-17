@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
+#include <sys/time.h>
 
 
 typedef struct{
-   int sudo[9][9];
+    int sudo[9][9];
 }Node;
 
 
@@ -45,7 +46,7 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int enColumna(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 existe
+int enFila(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 existe
     int array[10] = {0};
     for (int n = 0 ; n < 9 ; n++) {
         array[sudo[x][n]]++;
@@ -55,7 +56,7 @@ int enColumna(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 exis
     return 0;
 }
 
-int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
+int enColumna(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
     int array[10] = {0};
     for (int n = 0 ; n < 9 ; n++) {
         array[sudo[n][y]]++;
@@ -66,7 +67,7 @@ int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
 }
 
 int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 existe
-    int k = 3 * (x/3) + (y/3), p;
+    int k = 3 * (y/3) + (x/3), p;
     int array[10] = {0};
     for(p=0;p<9;p++) {
         int i=3*(k/3) + (p/3) ;
@@ -83,9 +84,9 @@ int is_valid(Node* n){
     for (int i = 0 ; i < 9 ; i++) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
             if (n -> sudo[i][k] != 0) { // Para cada elemento distinto de 0
-                if (enColumna(n -> sudo, i, n -> sudo[i][k], k))
+                if (enFila(n -> sudo, i, n -> sudo[i][k], k))
                     return 0;
-                if (enFila(n -> sudo, k, n -> sudo[i][k], i))
+                if (enColumna(n -> sudo, k, n -> sudo[i][k], i))
                     return 0;
                 if (enSubMatriz(n -> sudo, i, k, n -> sudo[i][k]))
                     return 0;
@@ -102,14 +103,15 @@ List* get_adj_nodes(Node* n) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
             if (n -> sudo[i][k] == 0) { // Encontrar casilla vacia
                 for (int cand = 1 ; cand <= 9 ; cand++) { // Itera cada posible estado
-                    Node *copia = copy(n);
-                    copia -> sudo[i][k] = cand;
-                    if (is_valid(copia)) {
+                    n -> sudo[i][k] = cand;
+                    if (is_valid(n)) {
+                        Node *copia = copy(n);
+                        n -> sudo[i][k] = 0;
                         pushBack(list, copia);
                         flag = 0;
                     }
                     else
-                        free(copia);
+                        n -> sudo[i][k] = 0;
                 }
                 break;
             }
@@ -171,14 +173,25 @@ Node *DFS(Node* initial, int* cont) {
 
 /*
 int main( int argc, char *argv[] ){
+    struct timeval inicio, fin;
+    long segundos, microsegundos;
+    double tiempoTranscurrido;
+    
 
-  Node* initial= read_file("s12a.txt");;
+    Node* initial= read_file("s12a.txt");;
 
-  int cont=0;
-  Node* final = DFS(initial, &cont);
-  printf("iterations:%d\n",cont);
-  print_node(final);
+    int cont=0;
+    gettimeofday(&inicio, NULL);
+    Node* final = DFS(initial, &cont);
+    gettimeofday(&fin, NULL);
+    segundos = fin.tv_sec - inicio.tv_sec;
+    microsegundos = fin.tv_usec - inicio.tv_usec;
+    tiempoTranscurrido = segundos + microsegundos*1e-6;
+    printf("iterations:%d\n",cont);
+    printf("Tiempo transcurrido: %.6f segundos\n", tiempoTranscurrido);
+    if (final)
+        print_node(final);
 
-  return 0;
+    return 0;
 } 
-  */
+*/
