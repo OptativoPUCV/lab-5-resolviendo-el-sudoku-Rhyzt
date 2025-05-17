@@ -1,0 +1,11 @@
+Fri, May 16, 2025 10:22:23 PM: 
+ sudoku.c | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+Compilation failed
+In file included from test.c:5:0:
+sudoku.c: In function 'get_adj_nodes':
+sudoku.c:70:9: error: unused variable 'k' [-Werror=unused-variable]
+     int k = 0, flag = 1;
+         ^
+cc1.exe: all warnings being treated as errors
+3f0e54c

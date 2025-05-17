@@ -7,6 +7,7 @@ typedef struct{
    int sudo[9][9];
 }Node;
 
+
 Node* createNode(){
   Node* n=(Node*) malloc(sizeof(Node));
   return n;
@@ -48,9 +49,40 @@ int is_valid(Node* n){
     return 1;
 }
 
+int enColumna(int sudo[9][9], int x, int cand) {// 0 no existe, 1 existe
+    for (int n = 0 ; n < 9 ; n++) {
+        if (sudo[x][n] == cand)
+            return 0;
+    }
+    return 1;
+}
+
+int enFila(int sudo[9][9], int y, int cand) {// 0 no existe, 1 existe
+    for (int n = 0 ; n < 9 ; n++) {
+        if (sudo[n][y] == cand)
+            return 0;
+    }
+    return 1;
+}
 
 List* get_adj_nodes(Node* n){
     List* list=createList();
+    int k = 0, flag = 1;
+    for (int i = 0 ; i < 9 ; i++) {
+        for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
+            if (n -> sudo[i][k] == 0) {
+                for (int cand = 1 ; cand <= 9 ; cand++) { // Itera cada posible estado
+                    Node *copia = copy(n);
+                    copia -> sudo[i][k] = cand;
+                    pushBack(list, copia);
+                    flag = 0;
+                } 
+            }
+            if (!flag) break;
+        }
+        if (!flag) break;
+    }
+
     return list;
 }
 
