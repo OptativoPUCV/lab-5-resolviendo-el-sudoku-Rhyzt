@@ -143,7 +143,6 @@ Node *DFS(Node* initial, int* cont) {
             node = next(adj);
         }
         free(aux);
-        *cont++;
     }
     return NULL;
 }
