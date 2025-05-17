@@ -76,7 +76,7 @@ int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 exis
 int is_valid(Node* n){
     for (int i = 0 ; i < 9 ; i++) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
-            if (n -> sudo[i][k] != 0) {
+            if (n -> sudo[i][k] != 0) { // Para cada elemento distinto de 0
                 if (enColumna(n -> sudo, i, n -> sudo[i][k], k))
                     return 0;
                 if (enFila(n -> sudo, k, n -> sudo[i][k], i))
@@ -89,12 +89,12 @@ int is_valid(Node* n){
     return 1;
 }
 
-List* get_adj_nodes(Node* n){
+List* get_adj_nodes(Node* n) {
     List *list = createList();
     int flag = 0;
     for (int i = 0 ; i < 9 ; i++) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
-            if (n -> sudo[i][k] == 0) {
+            if (n -> sudo[i][k] == 0) { // Encontrar casilla vacia
                 for (int cand = 1 ; cand <= 9 ; cand++) { // Itera cada posible estado
                     Node *copia = copy(n);
                     copia -> sudo[i][k] = cand;
@@ -102,6 +102,8 @@ List* get_adj_nodes(Node* n){
                         pushBack(list, copia);
                         flag = 1;
                     }
+                    else
+                        free(copia);
                 }
                 break;
             }
@@ -129,16 +131,19 @@ Node *DFS(Node* initial, int* cont) {
     Stack *pila = createStack();
     push(pila, initial);
     while (top(pila) != NULL) {
-        Node *aux = copy(top(pila));
+        Node *aux = top(pila);
         pop(pila);
         if (is_final(aux)) return aux;
 
-        List *lista = get_adj_nodes(aux);
+        List *adj = get_adj_nodes(aux);
+        Node *node = first(adj);
 
-        for (Node *node = first(lista) ; node != NULL ; node = first(lista)) {
+        while (adj) {
             push(pila, node);
-            popCurrent(lista);
+            node = next(adj);
         }
+        free(aux);
+        *cont++;
     }
     return NULL;
 }
