@@ -46,16 +46,20 @@ void print_node(Node* n){
 }
 
 int enColumna(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 existe
+    int array[10];
     for (int n = 0 ; n < 9 ; n++) {
-        if (sudo[x][n] == cand && n != posy)
+        array[sudo[x][n]]++;
+        if (array[sudo[x][n]] > 1)
             return 1;
     }
     return 0;
 }
 
 int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
+    int array[10];
     for (int n = 0 ; n < 9 ; n++) {
-        if (sudo[n][y] == cand && n != posx)
+        array[sudo[n][y]]++;
+        if (array[sudo[n][y]] > 1)
             return 1;
     }
     return 0;
@@ -63,10 +67,12 @@ int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
 
 int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 existe
     int k = 3 * (x/3) + (y/3), p;
+    int array[10];
     for(p=0;p<9;p++) {
         int i=3*(k/3) + (p/3) ;
         int j=3*(k%3) + (p%3) ;
-        if(sudo[i][j] == cand && !(i == x && j == y)) {
+        array[sudo[i][j]]++;
+        if(array[sudo[i][j]] > 1) {
             return 1;
         }
     }
