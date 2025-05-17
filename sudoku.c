@@ -124,7 +124,7 @@ int is_final(Node* n) {
     List *lista = get_adj_nodes(n);
     if (first(lista) == NULL) {
         for (int i = 0 ; i < 9 ; i++)
-            for (int k = 0 ; k < 9 ; k++)   
+            for (int k = 0 ; k < 9 ; k++)
                 if (n -> sudo[i][k] == 0) {
                     clean(lista);
                     free(lista);
@@ -140,6 +140,8 @@ int is_final(Node* n) {
 }
 
 Node *DFS(Node* initial, int* cont) {
+    if (!isvalid(initial))
+        return NULL;
     Stack *pila = createStack();
     push(pila, initial);
     while (top(pila) != NULL) {

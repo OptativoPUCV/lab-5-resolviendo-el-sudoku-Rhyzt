@@ -388,3 +388,14 @@ Sat, May 17, 2025  2:27:36 PM:
  tests:  10|0
 total_score: 70/70
 322603f
+Sat, May 17, 2025  2:46:48 PM: 
+ sudoku.c | 2 ++
+ 1 file changed, 2 insertions(+)
+Compilation failed
+In file included from test.c:5:0:
+sudoku.c: In function 'DFS':
+sudoku.c:143:10: error: implicit declaration of function 'isvalid' [-Werror=implicit-function-declaration]
+     if (!isvalid(initial))
+          ^~~~~~~
+cc1.exe: all warnings being treated as errors
+2fad715
