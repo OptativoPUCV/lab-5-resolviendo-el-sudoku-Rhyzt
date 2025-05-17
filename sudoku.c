@@ -144,7 +144,7 @@ Node *DFS(Node* initial, int* cont) {
         List *adj = get_adj_nodes(aux);
         Node *node = first(adj);
 
-        while (adj) {
+        while (node) {
             push(pila, node);
             node = next(adj);
         }
