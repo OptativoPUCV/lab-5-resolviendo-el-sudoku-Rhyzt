@@ -91,7 +91,7 @@ int is_valid(Node* n){
 
 List* get_adj_nodes(Node* n){
     List *list = createList();
-    int flag = 1;
+    int flag = 0;
     for (int i = 0 ; i < 9 ; i++) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
             if (n -> sudo[i][k] == 0) {
@@ -100,12 +100,13 @@ List* get_adj_nodes(Node* n){
                     copia -> sudo[i][k] = cand;
                     if (is_valid(copia)) {
                         pushBack(list, copia);
-                        flag = 0;
+                        flag = 1;
                     }
-                } 
+                }
+                break;
             }
-            if (!flag) return list;
         }
+        if (flag) break;
     }
     return list;
 }
