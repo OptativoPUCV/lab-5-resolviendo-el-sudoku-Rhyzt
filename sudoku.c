@@ -54,7 +54,7 @@ int enColumna(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 exis
 
 int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
     for (int n = 0 ; n < 9 ; n++) {
-        if (sudo[n][y] == cand && n != posx);
+        if (sudo[n][y] == cand && n != posx)
             return 0;
     }
     return 1;
