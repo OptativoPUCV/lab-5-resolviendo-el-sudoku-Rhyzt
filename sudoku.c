@@ -97,8 +97,10 @@ List* get_adj_nodes(Node* n){
                 for (int cand = 1 ; cand <= 9 ; cand++) { // Itera cada posible estado
                     Node *copia = copy(n);
                     copia -> sudo[i][k] = cand;
-                    pushBack(list, copia);
-                    flag = 0;
+                    if (isvalid(copia)) {
+                        pushBack(list, copia);
+                        flag = 0;
+                    }
                 } 
             }
             if (!flag) break;

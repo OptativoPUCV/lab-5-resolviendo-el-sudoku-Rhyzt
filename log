@@ -71,3 +71,14 @@ Fri, May 16, 2025 11:33:29 PM:
  tests:  5|3
 total_score: 35/70
 2e6aea0
+Fri, May 16, 2025 11:35:07 PM: 
+ sudoku.c | 2 ++
+ 1 file changed, 2 insertions(+)
+Compilation failed
+In file included from test.c:5:0:
+sudoku.c: In function 'get_adj_nodes':
+sudoku.c:100:25: error: implicit declaration of function 'isvalid' [-Werror=implicit-function-declaration]
+                     if (isvalid(copia)) {
+                         ^~~~~~~
+cc1.exe: all warnings being treated as errors
+00448b6
