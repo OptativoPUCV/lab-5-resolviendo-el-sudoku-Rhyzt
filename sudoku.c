@@ -129,11 +129,10 @@ int is_final(Node* n) {
 Node *DFS(Node* initial, int* cont){
     Stack *pila = createStack();
     push(pila, initial);
-    for (Node *aux = top(pila) ; aux != NULL ; aux = top(pila)) {
-        pop(pila);  
+    for (Node *aux = top(pila) ; aux != NULL ; aux = top(pila)) {  
         if (is_final(aux)) return aux;
-        free(aux);
         List *lista = get_adj_nodes(aux);
+        pop(pila);
         for (aux = first(lista) ; aux != NULL ; aux = next(lista)) {
             push(pila, aux);    
         }
