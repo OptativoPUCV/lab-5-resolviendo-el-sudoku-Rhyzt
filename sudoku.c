@@ -96,6 +96,10 @@ List* get_adj_nodes(Node* n){
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
             if (n -> sudo[i][k] == 0) {
                 for (int cand = 1 ; cand <= 9 ; cand++) { // Itera cada posible estado
+                    if (n == NULL) {
+                        fprintf(stderr, "copy() recibió un puntero NULL\n");
+                        exit(1);
+                    }
                     Node *copia = copy(n);
                     copia -> sudo[i][k] = cand;
                     if (is_valid(copia)) {
@@ -127,7 +131,7 @@ int is_final(Node* n) {
     return 0;
 }
 
-Node* DFS(Node* initial, int* cont){
+Node *DFS(Node* initial, int* cont){
     Stack *pila = createStack();
     push(pila, initial);
     while (top(pila) != NULL) {
