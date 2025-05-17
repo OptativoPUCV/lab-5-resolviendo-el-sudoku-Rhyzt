@@ -62,10 +62,10 @@ int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
 
 int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 existe
     int k = 3 * (y/3) + (x/3), p;
-    for(p=0;p<9;p++){
+    for(p=0;p<9;p++) {
         int i=3*(k/3) + (p/3) ;
         int j=3*(k%3) + (p%3) ;
-        if(sudo[i][j] == cand && i != x && j != y) {
+        if(sudo[i][j] == cand && !(i == x && j == y)) {
             return 1;
         }
     }
