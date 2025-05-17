@@ -76,9 +76,9 @@ int is_valid(Node* n){
     for (int i = 0 ; i < 9 ; i++) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
             if (n -> sudo[i][k] != 0) {
-                if (enColumna(n -> sudo, i, n -> sudo[i][k], k))
+                if (enColumna(n -> sudo, k, n -> sudo[i][k], i))
                     return 0;
-                if (enFila(n -> sudo, k, n -> sudo[i][k], i))
+                if (enFila(n -> sudo, i, n -> sudo[i][k], k))
                     return 0;
                 if (enSubMatriz(n -> sudo, i, k, n -> sudo[i][k]))
                     return 0;
