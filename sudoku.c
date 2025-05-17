@@ -132,7 +132,6 @@ Node *DFS(Node* initial, int* cont) {
     Stack *pila = createStack();
     push(pila, initial);
     while (top(pila) != NULL) {
-        if (top(pila) == NULL) break;
         Node *aux = copy(top(pila));
         pop(pila);
         if (is_final(aux)) return aux;
@@ -141,10 +140,8 @@ Node *DFS(Node* initial, int* cont) {
 
         for (Node *node = first(lista) ; node != NULL ; node = next(lista))
             push(pila, node);    
-
+            
         free(aux);
-        clean(lista);
-        free(lista);
     }
     return NULL;
 }
