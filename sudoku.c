@@ -128,7 +128,7 @@ int is_final(Node* n) {
     return 0;
 }
 
-Node *DFS(Node* initial, int* cont){
+Node *DFS(Node* initial, int* cont) {
     Stack *pila = createStack();
     push(pila, initial);
     while (top(pila) != NULL) {
@@ -141,10 +141,10 @@ Node *DFS(Node* initial, int* cont){
         
         for (aux = first(lista) ; aux != NULL ; aux = next(lista))
             push(pila, aux);    
-        
         free(aux);
         clean(lista);
         free(lista);
+    }
     return NULL;
 }
 
