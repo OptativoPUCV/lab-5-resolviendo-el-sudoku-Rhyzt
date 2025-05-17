@@ -118,10 +118,12 @@ int is_final(Node* n) {
         for (int i = 0 ; i < 9 ; i++)
             for (int k = 0 ; k < 9 ; k++)   
                 if (n -> sudo[i][k] == 0) {
+                    free(lista);
                     return 0;
                 }
         return 1;
     }
+    free(lista);
     return 0;
 }
 
@@ -135,9 +137,12 @@ Node *DFS(Node* initial, int* cont) {
 
         List *lista = get_adj_nodes(aux);
 
-        for (Node *node = first(lista) ; node != NULL ; node = next(lista))
-            push(pila, node);    
-            
+        for (Node *node = first(lista) ; node != NULL ; node = first(lista)) {
+            push(pila, node);
+            popCurrent(lista);
+        }
+        free(aux);
+        free(lista);
     }
     return NULL;
 }
