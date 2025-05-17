@@ -104,11 +104,10 @@ List* get_adj_nodes(Node* n){
                     }
                 } 
             }
-            if (!flag) break;
+            if (!flag) return list;
         }
-        if (!flag) break;
     }
-    return list;
+    return NULL;
 }
 
 
