@@ -114,7 +114,7 @@ List* get_adj_nodes(Node* n){
 
 int is_final(Node* n) {
     List *lista = get_adj_nodes(n);
-    if (lista == NULL) {
+    if (first(lista) == NULL) {
         for (int i = 0 ; i < 9 ; i++)
             for (int k = 0 ; k < 9 ; k++)   
                 if (n -> sudo[i][k] == 0) {
