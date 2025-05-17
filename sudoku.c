@@ -138,7 +138,6 @@ Node *DFS(Node* initial, int* cont) {
         for (Node *node = first(lista) ; node != NULL ; node = next(lista))
             push(pila, node);    
             
-        free(aux);
     }
     return NULL;
 }
