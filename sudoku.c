@@ -107,7 +107,7 @@ List* get_adj_nodes(Node* n){
             if (!flag) return list;
         }
     }
-    return NULL;
+    return list;
 }
 
 
