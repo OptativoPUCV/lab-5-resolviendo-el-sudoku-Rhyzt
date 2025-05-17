@@ -15,3 +15,17 @@ Fri, May 16, 2025 10:22:38 PM:
  tests:  2|4
 total_score: 15/70
 ac07746
+Fri, May 16, 2025 11:03:35 PM: 
+ sudoku.c | 37 ++++++++++++++++++++++++++++++-------
+ 1 file changed, 30 insertions(+), 7 deletions(-)
+Compilation failed
+In file included from test.c:5:0:
+sudoku.c: In function 'enFila':
+sudoku.c:57:9: error: this 'if' clause does not guard... [-Werror=misleading-indentation]
+         if (sudo[n][y] == cand && n != posx);
+         ^~
+sudoku.c:58:13: note: ...this statement, but the latter is misleadingly indented as if it is guarded by the 'if'
+             return 0;
+             ^~~~~~
+cc1.exe: all warnings being treated as errors
+f757913

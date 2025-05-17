@@ -44,23 +44,46 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
-
-    return 1;
-}
-
-int enColumna(int sudo[9][9], int x, int cand) {// 0 no existe, 1 existe
+int enColumna(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 existe
     for (int n = 0 ; n < 9 ; n++) {
-        if (sudo[x][n] == cand)
+        if (sudo[x][n] == cand && n != posy)
             return 0;
     }
     return 1;
 }
 
-int enFila(int sudo[9][9], int y, int cand) {// 0 no existe, 1 existe
+int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
     for (int n = 0 ; n < 9 ; n++) {
-        if (sudo[n][y] == cand)
+        if (sudo[n][y] == cand && n != posx);
             return 0;
+    }
+    return 1;
+}
+
+int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 existe
+    int k = 3 * (y/3) + (x/3), p;
+    for(p=0;p<9;p++){
+        int i=3*(k/3) + (p/3) ;
+        int j=3*(k%3) + (p%3) ;
+        if(sudo[i][j] == cand) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int is_valid(Node* n){
+    for (int i = 0 ; i < 9 ; i++) {
+        for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
+            if (n -> sudo[i][k] != 0) {
+                if (enColumna(n -> sudo, i, n -> sudo[i][k], k))
+                    return 0;
+                if (enFila(n -> sudo, k, n -> sudo[i][k], i))
+                    return 0;
+                if (enSubMatriz(n -> sudo, i, k, n -> sudo[i][k]))
+                    return 0;
+            }
+        }
     }
     return 1;
 }
