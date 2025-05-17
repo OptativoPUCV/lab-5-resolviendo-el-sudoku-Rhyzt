@@ -121,9 +121,10 @@ int is_final(Node* n) {
                     free(lista);
                     return 0;
                 }
+        return 1;
     }
-
-    return 1;
+    free(lista);
+    return 0;
 }
 
 Node* DFS(Node* initial, int* cont){
