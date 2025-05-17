@@ -114,6 +114,7 @@ List* get_adj_nodes(Node* n) {
                 break;
             }
         }
+        break;
         if (flag) break;
     }
     return list;
@@ -147,7 +148,6 @@ Node *DFS(Node* initial, int* cont) {
         while (node) {
             push(pila, node);
             node = next(adj);
-            break;
         }
         free(aux);
     }
