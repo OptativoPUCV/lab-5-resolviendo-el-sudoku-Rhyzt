@@ -140,7 +140,7 @@ int is_final(Node* n) {
 }
 
 Node *DFS(Node* initial, int* cont) {
-    if (!isvalid(initial))
+    if (!is_valid(initial))
         return NULL;
     Stack *pila = createStack();
     push(pila, initial);
