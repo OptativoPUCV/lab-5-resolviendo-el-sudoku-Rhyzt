@@ -67,7 +67,7 @@ int enFila(int sudo[9][9], int y, int cand) {// 0 no existe, 1 existe
 
 List* get_adj_nodes(Node* n){
     List* list=createList();
-    int k = 0, flag = 1;
+    int flag = 1;
     for (int i = 0 ; i < 9 ; i++) {
         for (int k = 0 ; k < 9 ; k++) { // Recorrer todo el sudoku
             if (n -> sudo[i][k] == 0) {
