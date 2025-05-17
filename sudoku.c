@@ -132,15 +132,15 @@ Node *DFS(Node* initial, int* cont) {
     Stack *pila = createStack();
     push(pila, initial);
     while (top(pila) != NULL) {
-        Node *aux = top(pila);
+        Node *aux = copy(top(pila));
         pop(pila);
         if (is_final(aux)) return aux;
 
         List *lista = get_adj_nodes(aux);
 
-        
         for (Node *node = first(lista) ; node != NULL ; node = next(lista))
             push(pila, node);    
+
         free(aux);
         clean(lista);
         free(lista);
