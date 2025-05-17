@@ -132,14 +132,13 @@ Node *DFS(Node* initial, int* cont){
     for (Node *aux = top(pila) ; aux != NULL ; aux = top(pila)) {
         pop(pila);  
         if (is_final(aux)) return aux;
-        free(aux);
         List *lista = get_adj_nodes(aux);
+        free(aux);
         for (aux = first(lista) ; aux != NULL ; aux = next(lista)) {
-            push(pila, aux);
+            push(pila, aux);    
         }
         free(lista);
     }
-    
     return NULL;
 }
 
