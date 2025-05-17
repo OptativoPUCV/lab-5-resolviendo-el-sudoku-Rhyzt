@@ -128,3 +128,9 @@ sudoku.c:116:37: error: comparison between pointer and integer [-Werror]
                                      ^~
 cc1.exe: all warnings being treated as errors
 ecc65a4
+Fri, May 16, 2025 11:45:52 PM: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  7|1
+total_score: 55/70
+834c6cd
