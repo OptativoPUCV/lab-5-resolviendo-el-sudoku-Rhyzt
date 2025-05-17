@@ -65,7 +65,7 @@ int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 exis
     for(p=0;p<9;p++){
         int i=3*(k/3) + (p/3) ;
         int j=3*(k%3) + (p%3) ;
-        if(sudo[i][j] == cand) {
+        if(sudo[i][j] == cand && i != x && j != y) {
             return 1;
         }
     }
