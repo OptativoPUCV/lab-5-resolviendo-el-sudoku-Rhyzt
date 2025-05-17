@@ -117,11 +117,13 @@ int is_final(Node* n) {
         for (int i = 0 ; i < 9 ; i++)
             for (int k = 0 ; k < 9 ; k++)   
                 if (n -> sudo[i][k] == 0) {
+                    clean(lista);
                     free(lista);
                     return 0;
                 }
         return 1;
     }
+    clean(lista);
     free(lista);
     return 0;
 }
@@ -129,16 +131,14 @@ int is_final(Node* n) {
 Node *DFS(Node* initial, int* cont){
     Stack *pila = createStack();
     push(pila, initial);
-    for (Node *nodo, *aux = top(pila) ; aux != NULL ; aux = top(pila)) {
-        pop(pila);
+    Node *aux;
+    for (aux = copy(top(pila)) ; aux != NULL ; aux = copy(top(pila))) {
         if (is_final(aux)) return aux;
         List *lista = get_adj_nodes(aux);
-        
-        for (nodo = first(lista) ; nodo != NULL ; nodo = next(lista))
-            push(pila, nodo);    
         free(aux);
+        for (aux = first(lista) ; aux != NULL ; aux = next(lista))
+            push(pila, aux);    
     }
-
     return NULL;
 }
 
