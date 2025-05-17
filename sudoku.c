@@ -113,10 +113,6 @@ List* get_adj_nodes(Node* n){
 
 
 int is_final(Node* n) {
-    if (n == NULL) {
-    fprintf(stderr, "copy() recibió un puntero NULL\n");
-    exit(1);
-    }
     List *lista = get_adj_nodes(n);
     if (first(lista) == NULL) {
         for (int i = 0 ; i < 9 ; i++)
@@ -134,8 +130,7 @@ int is_final(Node* n) {
 Node *DFS(Node* initial, int* cont){
     Stack *pila = createStack();
     push(pila, initial);
-    while (top(pila) != NULL) {
-        Node *aux = top(pila);
+    for (Node *aux = top(pila) ; aux != NULL ; aux = top(pila)) {
         pop(pila);
         if (is_final(aux)) return aux;
 
