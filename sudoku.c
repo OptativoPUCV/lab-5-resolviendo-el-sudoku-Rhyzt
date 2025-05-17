@@ -113,9 +113,11 @@ List* get_adj_nodes(Node* n){
 }
 
 
-int is_final(Node* n){
-    if (first(get_adj_nodes(n)) == NULL) return 1;
-    return 0;
+int is_final(Node* n) {
+    List *lista = get_adj_nodes(n);
+    int res = (first(lista) == NULL) ? 1 : 0;
+    free(lista);
+    return res;
 }
 
 Node* DFS(Node* initial, int* cont){
@@ -123,8 +125,9 @@ Node* DFS(Node* initial, int* cont){
     push(pila, initial);
     while (top(pila) != NULL) {
         List *lista = get_adj_nodes(top(pila));
-        if (lista == NULL) 
+        if (lista == NULL) {
             return top(pila);
+        }
         pop(pila);
 
         Node *aux = first(lista);
