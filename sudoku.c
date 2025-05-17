@@ -135,7 +135,7 @@ Node *DFS(Node* initial, int* cont){
         List *lista = get_adj_nodes(aux);
         
         for (nodo = first(lista) ; nodo != NULL ; nodo = next(lista))
-            push(pila, aux);    
+            push(pila, nodo);    
         free(aux);
     }
 
