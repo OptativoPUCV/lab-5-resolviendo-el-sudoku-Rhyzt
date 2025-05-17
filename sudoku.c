@@ -8,6 +8,7 @@ typedef struct{
 }Node;
 
 
+
 Node* createNode(){
   Node* n=(Node*) malloc(sizeof(Node));
   return n;
@@ -118,7 +119,24 @@ int is_final(Node* n){
 }
 
 Node* DFS(Node* initial, int* cont){
-  return NULL;
+    Stack *pila = createStack();
+    push(pila, initial);
+    while (top(pila) != NULL) {
+        List *lista = get_adj_nodes(top(pila));
+        if (lista == NULL) 
+            return top(pila);
+        pop(pila);
+
+        Node *aux = first(lista);
+        push(pila, aux);
+
+        while (next(lista) != NULL) {
+            push(pila, aux);
+        }
+        free(lista);
+    }
+    
+    return NULL;
 }
 
 
