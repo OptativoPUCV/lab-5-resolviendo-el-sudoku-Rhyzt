@@ -46,7 +46,7 @@ void print_node(Node* n){
 }
 
 int enColumna(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 existe
-    int array[10];
+    int array[10] = {0};
     for (int n = 0 ; n < 9 ; n++) {
         array[sudo[x][n]]++;
         if (array[sudo[x][n]] > 1 && sudo[x][n] != 0)
@@ -56,7 +56,7 @@ int enColumna(int sudo[9][9], int x, int cand, int posy) {// 0 no existe, 1 exis
 }
 
 int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
-    int array[10];
+    int array[10] = {0};
     for (int n = 0 ; n < 9 ; n++) {
         array[sudo[n][y]]++;
         if (array[sudo[n][y]] > 1 && sudo[n][y] != 0)
@@ -67,7 +67,7 @@ int enFila(int sudo[9][9], int y, int cand, int posx) {// 0 no existe, 1 existe
 
 int enSubMatriz(int sudo[9][9], int x, int y, int cand) { // 0 no existe, 1 existe
     int k = 3 * (x/3) + (y/3), p;
-    int array[10];
+    int array[10] = {0};
     for(p=0;p<9;p++) {
         int i=3*(k/3) + (p/3) ;
         int j=3*(k%3) + (p%3) ;
@@ -147,6 +147,7 @@ Node *DFS(Node* initial, int* cont) {
         while (node) {
             push(pila, node);
             node = next(adj);
+            break;
         }
         free(aux);
     }
